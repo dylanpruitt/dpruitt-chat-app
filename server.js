@@ -32,6 +32,7 @@ function returnIndexFromUniqueIdentifier(ws) {
 
 wss.on("connection", function connection(ws, req) {
   ws.uniqueIdentifier = Math.floor(Math.random() * Math.floor(10000000));
+  ws.username = "guest";
 
   ws.onmessage = function(event) {
     let message = JSON.parse(event.data);
@@ -40,6 +41,7 @@ wss.on("connection", function connection(ws, req) {
       let date = new Date();
       let dateString =
         date.getHours() + ":" + date.getMinutes();
+      ws.username = message.username;
       let username = message.username;
       let messageText = username + " " + dateString + ": " + message.text;
       let newMessage = {
@@ -59,11 +61,9 @@ wss.on("connection", function connection(ws, req) {
   });
 
   ws.on ("close", () => {
-    console.log(
-      "client " +
-        returnIndexFromUniqueIdentifier(ws) +
-        " disconnected"
-    );
+    wss.clients.forEach(client => {
+      sendServerMessage(client, ws.username + " has left the chat.");
+    });
     disconnectClient(returnIndexFromUniqueIdentifier(ws));
   });
 });
