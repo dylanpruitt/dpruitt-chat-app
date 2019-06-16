@@ -34,7 +34,7 @@
 		var HOST = location.origin.replace(/^http/, "ws");
 		var ws = new WebSocket (HOST);
 		let uniqueID = 0;
-		let username = "";
+		let username = "guest";
 
 		ws.onmessage = function(event) {
 			let message = JSON.parse(event.data);
@@ -46,7 +46,7 @@
 				let newMessage = document.createElement ('p');
 				newMessage.textContent = message.text;
 				newMessage.className = "message";
-				if (message.type = "serverMessage") {
+				if (message.type === "serverMessage") {
 					newMessage.style.cssText = "font-weight: bold"; 
 				}
 				document.body.appendChild (newMessage);
