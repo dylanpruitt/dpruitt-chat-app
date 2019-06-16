@@ -19,13 +19,13 @@
        minlength="1" maxlength="256" size="10">
 <button id="submitMessage" onclick="sendMessage ()">Submit</button>
 
+<div id="messageContainer"></div>
+
 <div id = "colorSelectors">
 		<div id="redBackground" class="colorSelector"></div>
 		<div id="blueBackground" class="colorSelector"></div>
 		<div id="blackBackground" class="colorSelector"></div>
 </div>
-
-<div id="messageContainer"></div>
 
 <style>
 	body {
@@ -59,6 +59,7 @@
 		height: 40px;
 		border: 3px solid whitesmoke;
 		border-radius: 5px;
+		display: inline;
 	}
 	#redBackground { background-color: indianred; }
 	#blueBackground { background-color: lightblue; }
