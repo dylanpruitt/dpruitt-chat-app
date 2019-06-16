@@ -37,13 +37,13 @@ wss.on("connection", function connection(ws, req) {
     let message = JSON.parse(event.data);
   };
 
-  clients.push(ws);
+  clients.push (ws);
 
   wss.clients.forEach(client => {
     sendServerMessage(client, "A new user has joined the chat.");
   });
 
-  ws.on("close", () => {
+  ws.on ("close", () => {
     console.log(
       "client " +
         returnIndexFromUniqueIdentifier(ws) +
@@ -56,7 +56,7 @@ wss.on("connection", function connection(ws, req) {
 function sendServerMessage(client, messageName) {
   let date = new Date();
   let dateString =
-    date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    date.getHours() + ":" + date.getMinutes();
   let messageText = dateString + ": " + messageName;
   let message = {
     messageType: "serverMessage",
