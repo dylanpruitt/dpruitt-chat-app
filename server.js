@@ -59,7 +59,7 @@ function sendServerMessage(client, messageName) {
     date.getHours() + ":" + date.getMinutes();
   let messageText = dateString + ": " + messageName;
   let message = {
-    messageType: "serverMessage",
+    type: "serverMessage",
     text: messageText,
   };
 
@@ -72,7 +72,7 @@ function updateClientTime () {
     let dateString =
       date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     let message = {
-      messageType: "time",
+      type: "time",
       text: dateString,
     };
   
