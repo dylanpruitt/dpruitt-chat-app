@@ -11,6 +11,10 @@
 		color: whitesmoke;
 		background-color: indianred;
 	}
+	.message {
+		font-size: 16px;
+		font-weight: normal;
+	}
 </style>
 <script>
 		var HOST = location.origin.replace(/^http/, "ws");
@@ -26,6 +30,7 @@
 			} else if (message.type === "serverMessage") {
 				let newMessage = document.createElement ('p');
 				newMessage.textContent = message.text;
+				newMessage.className = "message";
 				document.body.appendChild (newMessage);
 			}
 		};
