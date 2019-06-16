@@ -4,6 +4,8 @@
 <title>Simple Chat App</title>
 <h1>Simple Chat App</h1>
 
+<p id = "onlineUsers">1 users online</p>
+
 <p id = "time">Server time</p>
 
 <label for="username">Enter a username (4 to 16 characters):</label>
@@ -42,6 +44,9 @@
 			if (message.type === "time") {
 				let time = document.getElementById ("time");
 				time.innerHTML = message.text;
+			} else if (message.type === "onlineUsers") {
+				let onlineUsers = document.getElementById ("onlineUsers");
+				onlineUsers.innerHTML = message.text;
 			} else {
 				let newMessage = document.createElement ('p');
 				newMessage.textContent = message.text;

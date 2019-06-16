@@ -95,6 +95,19 @@ function updateClientTime () {
   });  
 }
 
+function updateOnlineUsers () {
+  wss.clients.forEach(client => {
+    let messageText = clients.length + " users online";
+    let message = {
+      type: "onlineUsers",
+      text: messageText,
+    };
+  
+    client.send(JSON.stringify(message));
+  });   
+}
+
 setInterval(() => {
   updateClientTime ();
+  updateOnlineUsers ();
 }, 1000);
