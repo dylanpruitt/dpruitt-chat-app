@@ -32,11 +32,19 @@
 		font-weight: normal;
 	}
 </style>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 		var HOST = location.origin.replace(/^http/, "ws");
 		var ws = new WebSocket (HOST);
 		let uniqueID = 0;
 		let username = "guest";
+
+		$(document).ready(function(){
+			$(".message").click(function(){
+				$(this).hide();
+			});
+		});
 
 		ws.onmessage = function(event) {
 			let message = JSON.parse(event.data);
@@ -64,6 +72,7 @@
 
 		sendMessage = function () {
 			let chatMessage = document.getElementById ("message").value;
+			document.getElementById ("message").value = "";
 			let message = {
 				username, username,
 				text: chatMessage,
