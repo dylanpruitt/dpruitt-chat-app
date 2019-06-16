@@ -30,6 +30,7 @@
 	.message {
 		font-size: 16px;
 		font-weight: normal;
+		width: 45%;
 	}
 	.message:hover {
 		color: lightskyblue;
@@ -71,17 +72,28 @@
 		};
 
 		setUsername = function () {
+			let chatMessage = username + " changed their username to " + document.getElementById ("username").value;
+			if (chatMessage !== "") {
+				let message = {
+				username, username,
+				text: chatMessage,
+				}
+				ws.send (JSON.stringify (message));
+			}
 			username = document.getElementById ("username").value;
 		}
 
 		sendMessage = function () {
 			let chatMessage = document.getElementById ("message").value;
 			document.getElementById ("message").value = "";
-			let message = {
+
+			if (chatMessage !== "") {
+				let message = {
 				username, username,
 				text: chatMessage,
+				}
+				ws.send (JSON.stringify (message));
 			}
-			ws.send (JSON.stringify (message));
 		}
 	  </script>
 </html>
