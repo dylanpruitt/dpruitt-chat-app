@@ -1,0 +1,6 @@
+{
+  "name": "Simple chat app",
+  "description": "A simple chat app using Heroku.",
+  "repository": "https://github.com/230001166/dpruitt-chat-app",
+  "keywords": ["node", "websocket"]
+}

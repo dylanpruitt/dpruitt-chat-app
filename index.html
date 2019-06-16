@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<title>Simple Chat App</title>
+<h1>Simple Chat App</h1>
+<p id = "time">Server time</p>
+<style>
+	body {
+		font-family: arial;
+		font-weight: bold;
+		font-size: 22px;
+		color: whitesmoke;
+		background-color: indianred;
+	}
+</style>
+<script>
+		var HOST = location.origin.replace(/^http/, "ws");
+		var ws = new WebSocket (HOST);
+		let uniqueID = 0;
+
+		ws.onmessage = function(event) {
+			let message = JSON.parse(event.data);
+			if (message.type === "date") {
+				let time = document.getElementById ("time");
+				time.innerHTML = message.text;
+			}
+		};
+		
+		/**
+		function requestVisitedSpots () {
+			let message = {
+				uniqueID, uniqueID,
+				type: "visitedspots",
+			}
+			ws.send (JSON.stringify (message));
+		}**/
+	  </script>
+</html>
