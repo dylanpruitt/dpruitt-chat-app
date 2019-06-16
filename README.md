@@ -1,1 +1,1 @@
-# pltw-scavenger-hunt
+# dpruitt-chat-app

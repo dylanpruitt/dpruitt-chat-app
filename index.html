@@ -1,8 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <title>Simple Chat App</title>
 <h1>Simple Chat App</h1>
+
 <p id = "time">Server time</p>
+
+<label for="username">Enter a username (4 to 16 characters):</label>
+<input type="text" id="username" name="username" required
+       minlength="4" maxlength="16" size="10">
+<button id="submitName" onclick="setUsername ()">Submit</button>
+<br>
+<label for="message">Enter a message here:</label>
+
+<input type="text" id="message" name="message" required
+       minlength="1" maxlength="256" size="10">
+<button id="submitMessage" onclick="sendMessage ()">Submit</button>
+
 <style>
 	body {
 		font-family: arial;
@@ -20,6 +34,7 @@
 		var HOST = location.origin.replace(/^http/, "ws");
 		var ws = new WebSocket (HOST);
 		let uniqueID = 0;
+		let username = "";
 
 		ws.onmessage = function(event) {
 			let message = JSON.parse(event.data);
@@ -27,21 +42,25 @@
 			if (message.type === "time") {
 				let time = document.getElementById ("time");
 				time.innerHTML = message.text;
-			} else if (message.type === "serverMessage") {
+			} else {
 				let newMessage = document.createElement ('p');
 				newMessage.textContent = message.text;
 				newMessage.className = "message";
 				document.body.appendChild (newMessage);
 			}
 		};
-		
-		/**
-		function requestVisitedSpots () {
+
+		setUsername = function () {
+			username = document.getElementById ("username").value;
+		}
+
+		sendMessage = function () {
+			let chatMessage = document.getElementById ("message").value;
 			let message = {
-				uniqueID, uniqueID,
-				type: "visitedspots",
+				username, username,
+				text: chatMessage,
 			}
 			ws.send (JSON.stringify (message));
-		}**/
+		}
 	  </script>
 </html>

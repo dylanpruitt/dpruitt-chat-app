@@ -35,6 +35,20 @@ wss.on("connection", function connection(ws, req) {
 
   ws.onmessage = function(event) {
     let message = JSON.parse(event.data);
+
+    wss.clients.forEach(client => {
+      let date = new Date();
+      let dateString =
+        date.getHours() + ":" + date.getMinutes();
+      let messageText = dateString + ": " + message.text;
+      let newMessage = {
+        type: "chatMessage",
+        text: messageText,
+      };
+
+      client.send(JSON.stringify(newMessage));
+    }); 
+  
   };
 
   clients.push (ws);
