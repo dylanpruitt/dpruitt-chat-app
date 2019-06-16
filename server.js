@@ -40,7 +40,8 @@ wss.on("connection", function connection(ws, req) {
       let date = new Date();
       let dateString =
         date.getHours() + ":" + date.getMinutes();
-      let messageText = dateString + ": " + message.text;
+      let username = message.username;
+      let messageText = username + " " + dateString + ": " + message.text;
       let newMessage = {
         type: "chatMessage",
         text: messageText,
