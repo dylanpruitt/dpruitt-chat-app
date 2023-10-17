@@ -1,6 +1,6 @@
 # dpruitt-chat-app
 
-A simple chat app where users can talk.
+A simple chat app where users can talk, created with jQuery/WebSockets.
 
 Features:
 - Users can change their usernames
